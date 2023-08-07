@@ -63,3 +63,5 @@ jobs:
         git add -A
         git commit -m "Update compiled protobuf files" || echo "No changes to commit"
         git push origin HEAD:refs/heads/${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.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 }}
