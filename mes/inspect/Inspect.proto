@@ -9,7 +9,6 @@ syntax = "proto3";
 // Dart : package
 option csharp_namespace = "InspectGrpcService";
 
-
 option java_package = "com.inspect";
 option java_multiple_files = true;
 option java_outer_classname = "InspectProto";
