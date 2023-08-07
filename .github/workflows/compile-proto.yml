@@ -38,10 +38,10 @@ jobs:
     # - name: Add Go Protobuf Plugin to Path
     #   run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
-    - name: Install Dart Protobuf Plugin
-      run: |
-        sudo apt-get install -y dart
-        pub global activate protoc_plugin
+    # - name: Install Dart Protobuf Plugin
+    #   run: |
+    #     sudo apt-get install -y dart
+    #     pub global activate protoc_plugin
 
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
