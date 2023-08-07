@@ -50,7 +50,7 @@ jobs:
           mkdir -p "$dir/csharp_out" "$dir/js_out" "$dir/ts_out" "$dir/java_out" "$dir/dart_out" "$dir/go_out"
           protoc --csharp_out="$dir/csharp_out" "$dir"/*.proto
           protoc --js_out=import_style=commonjs,binary:"$dir/js_out" "$dir"/*.proto
-          protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/ts_out" "$dir"/*.proto
+          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/ts_out" "$dir"/*.proto
           protoc --java_out="$dir/java_out" "$dir"/*.proto
           protoc --dart_out="$dir/dart_out" "$dir"/*.proto
           protoc --go_out="$dir/go_out" "$dir"/*.proto
