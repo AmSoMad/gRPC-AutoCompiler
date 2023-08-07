@@ -1,0 +1,37 @@
+name: Compile and Update Protobuf Files
+
+on:
+  push:
+    paths:
+      - '**/*.proto'
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Protobuf Compiler
+      run: sudo apt-get install -y protobuf-compiler
+
+    # 각 언어별 컴파일 단계 추가
+    - name: Compile Protobuf Files
+      run: |
+        find . -name "*.proto" -exec dirname {} \; | sort -u | while read -r dir; do
+          protoc --csharp_out="$dir" "$dir"/*.proto
+          protoc --js_out=import_style=commonjs,binary:"$dir" "$dir"/*.proto
+          protoc --ts_out=service=grpc-web:"$dir" "$dir"/*.proto
+          protoc --java_out="$dir" "$dir"/*.proto
+          protoc --dart_out="$dir" "$dir"/*.proto
+          protoc --go_out="$dir" "$dir"/*.proto
+        done
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'github-actions@example.com'
+        git add -A
+        git commit -m "Update compiled protobuf files" || echo "No changes to commit"
+        git push origin HEAD:refs/heads/${{ github.ref }}
