@@ -16,16 +16,44 @@ jobs:
     - name: Install Protobuf Compiler
       run: sudo apt-get install -y protobuf-compiler
 
+    - name: Install gRPC-Web Protobuf Plugin
+      run: |
+        wget https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64
+        sudo mv protoc-gen-grpc-web-1.4.2-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
+        sudo chmod +x /usr/local/bin/protoc-gen-grpc-web
+
+    - name: Install TypeScript Protobuf Plugin
+      run: npm install -g ts-protoc-gen
+
+    - name: Setup Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.20
+
+    - name: Install Go Protobuf Plugin
+      run: |
+        go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+
+    - name: Add Go Protobuf Plugin to Path
+      run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
+    - name: Install Dart Protobuf Plugin
+      run: |
+        sudo apt-get install -y dart
+        pub global activate protoc_plugin
+
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
       run: |
         find . -name "*.proto" -exec dirname {} \; | sort -u | while read -r dir; do
-          protoc --csharp_out="$dir" "$dir"/*.proto
-          protoc --js_out=import_style=commonjs,binary:"$dir" "$dir"/*.proto
-          protoc --ts_out=service=grpc-web:"$dir" "$dir"/*.proto
-          protoc --java_out="$dir" "$dir"/*.proto
-          protoc --dart_out="$dir" "$dir"/*.proto
-          protoc --go_out="$dir" "$dir"/*.proto
+          mkdir -p "$dir/csharp_out" "$dir/js_out" "$dir/ts_out" "$dir/java_out" "$dir/dart_out" "$dir/go_out"
+          protoc --csharp_out="$dir/csharp_out" "$dir"/*.proto
+          protoc --js_out=import_style=commonjs,binary:"$dir/js_out" "$dir"/*.proto
+          protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/ts_out" "$dir"/*.proto
+          protoc --java_out="$dir/java_out" "$dir"/*.proto
+          protoc --dart_out="$dir/dart_out" "$dir"/*.proto
+          protoc --go_out="$dir/go_out" "$dir"/*.proto
         done
 
     - name: Commit and push changes
