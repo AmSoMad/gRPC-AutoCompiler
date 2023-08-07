@@ -25,18 +25,18 @@ jobs:
     - name: Install TypeScript Protobuf Plugin
       run: npm install -g ts-protoc-gen
 
-    - name: Setup Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.20
+    # - name: Setup Go
+    #   uses: actions/setup-go@v2
+    #   with:
+    #     go-version: 1.20
 
-    - name: Install Go Protobuf Plugin
-      run: |
-        go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
-        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+    # - name: Install Go Protobuf Plugin
+    #   run: |
+    #     go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+    #     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
 
-    - name: Add Go Protobuf Plugin to Path
-      run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+    # - name: Add Go Protobuf Plugin to Path
+    #   run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
     - name: Install Dart Protobuf Plugin
       run: |
@@ -53,7 +53,7 @@ jobs:
           # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/ts_out" "$dir"/*.proto
           protoc --java_out="$dir/java_out" "$dir"/*.proto
           protoc --dart_out="$dir/dart_out" "$dir"/*.proto
-          protoc --go_out="$dir/go_out" "$dir"/*.proto
+          # protoc --go_out="$dir/go_out" "$dir"/*.proto
         done
 
     - name: Commit and push changes
