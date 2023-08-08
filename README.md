@@ -3,15 +3,19 @@
 
 [GitHub Repo](https://github.com/AmSoMad/gRPC-AutoCompiler)
 
-github action을 통하여 proto파일이 들어오게되면 자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다.
+github action을 통하여 proto파일이 들어오게되면 <br>
+자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다. <br>
 
 ## 목적
 
-이 저장소는 gRPC 프로토콜을 사용하는 다양한 언어로 작성된 서비스에 대한 컴파일을 자동화하기 위한 목적으로 생성되었습니다. proto파일이 저장소에 푸시되면, GitHub Action이 해당 파일들을 감지하고 필요한 언어로 컴파일한 뒤 결과를 다시 저장소에 푸시합니다.
+이 저장소는 gRPC 프로토콜을 사용하는 다양한 언어로 작성된 서비스에 대한 <br>
+컴파일을 자동화하기 위한 목적으로 생성되었습니다. <br>
+proto파일이 저장소에 푸시되면, GitHub Action이 해당 파일들을 감지하고 필요한 언어로 컴파일한 뒤 <br>
+결과를 다시 저장소에 푸시합니다. <br>
 
 ### Trigger 설정
 
-proto 파일 또는 yml 파일이 변경되면 이 workflow가 시작됩니다.
+proto 파일 또는 yml 파일이 변경되면 이 workflow가 시작됩니다. <br>
 
 ```yaml
 on:
@@ -33,7 +37,7 @@ jobs:
 
 ### 필수 도구 설치
 
-Protobuf Compiler, gRPC-Web Protobuf Plugin, Dart SDK 등 필요한 도구와 플러그인을 설치합니다.
+Protobuf Compiler, gRPC-Web Protobuf Plugin, Dart SDK 등 필요한 도구와 플러그인을 설치합니다.<br>
 
 ```yaml
     - name: Install Protobuf Compiler
@@ -69,17 +73,18 @@ Protobuf Compiler, gRPC-Web Protobuf Plugin, Dart SDK 등 필요한 도구와 �
 ```
 ### GitHub Secrets 설정
 
-이 Workflow에서는 GitHub secrets을 사용하여 보안 토큰을 안전하게 저장하고 관리합니다. 
-GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안전하게 보관할 수 있는 기능입니다.
+이 Workflow에서는 GitHub secrets을 사용하여 보안 토큰을 안전하게 저장하고 관리합니다. <br>
+GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안전하게 보관할 수 있는 기능입니다. <br>
 
-다음과 같은 환경 변수에서 secret을 사용하고 있습니다:
+다음과 같은 환경 변수에서 secret을 사용하고 있습니다: <br>
 
 ```yaml
       env:
         GITHUB_TOKEN: ${{ secrets.GRPC_AUTOCOMPILER_TOKEN }}
 ```
 
-이 경우 `GRPC_AUTOCOMPILER_TOKEN`은 GitHub에 저장된 secret의 이름으로, 해당 토큰은 저장소에 커밋과 푸시를 할 수 있는 권한을 부여해야 합니다.
+이 경우 `GRPC_AUTOCOMPILER_TOKEN`은 GitHub에 저장된 secret의 이름으로, <br>
+해당 토큰은 저장소에 커밋과 푸시를 할 수 있는 권한을 부여해야 합니다. <br>
 
 #### Secrets 추가 방법
 
@@ -89,10 +94,8 @@ GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안
 4. 이름에 `GRPC_AUTOCOMPILER_TOKEN`을 입력하고 값에 해당 토큰의 값을 입력합니다.
 5. 'Add secret'을 클릭하여 저장합니다.
 
-이제 GitHub Action이 이 secret을 사용하여 필요한 권한으로 작업을 수행할 수 있습니다. 이러한 방식으로 중요한 정보를 코드나 로그에서 숨길 수 있어 안전하게 사용할 수 있습니다.
-```
-
-이 설명은 사용자가 GitHub secrets을 설정하는 방법을 자세히 알려줍니다. 설명에 필요한 추가 정보가 있으면 알려주세요!
+이제 GitHub Action이 이 secret을 사용하여 필요한 권한으로 작업을 수행할 수 있습니다. <br>
+이러한 방식으로 중요한 정보를 코드나 로그에서 숨길 수 있어 안전하게 사용할 수 있습니다. <br>
 
 ## 사용 방법
 
