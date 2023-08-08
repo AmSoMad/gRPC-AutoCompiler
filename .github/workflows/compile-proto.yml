@@ -19,6 +19,9 @@ jobs:
     - name: Install Protobuf Compiler
       run: sudo apt-get install -y protobuf-compiler
 
+    - name: Install Python Protobuf Compiler
+      run: pip install protobuf      
+
     - name: Install gRPC-Web Protobuf Plugin
       run: |
         wget https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64
@@ -79,7 +82,7 @@ jobs:
           if [ -d "$output_dir" ]; then
             rm -r "$output_dir"
           fi
-          mkdir -p "$output_dir/csharp_out" "$output_dir/js_out" "$output_dir/ts_out" "$output_dir/java_out" "$output_dir/dart_out" "$output_dir/go_out" "$output_dir/grpc_web_out"
+          mkdir -p "$output_dir/csharp_out" "$output_dir/js_out" "$output_dir/ts_out" "$output_dir/java_out" "$output_dir/dart_out" "$output_dir/go_out" "$output_dir/grpc_web_out" "$output_dir/python_out"
           #C#
           protoc --csharp_out="$output_dir/csharp_out" "$proto_file"
           #JavaScript
@@ -93,6 +96,8 @@ jobs:
           # protoc --go_out="$output_dir/go_out" "$proto_file"
           #gRPC-Web
           protoc --plugin="protoc-gen-grpc-web=$grpc_web_plugin_path" --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
+          #Python
+          protoc --python_out="$output_dir/python_out" "$proto_file"
         done
 
     - name: Commit and push changes
