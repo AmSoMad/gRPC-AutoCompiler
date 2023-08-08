@@ -69,6 +69,7 @@ jobs:
     - name: Compile Protobuf Files
       run: |
         #Dart Protobuf Plugin Path
+        grpc_web_plugin_path="/usr/local/bin/protoc-gen-grpc-web"
         dart_protoc_plugin_path="$HOME/.pub-cache/bin/protoc-gen-dart"
         find . -name "*.proto" | while read -r proto_file; do
           dir=$(dirname "$proto_file")
@@ -91,7 +92,7 @@ jobs:
           #Go
           # protoc --go_out="$output_dir/go_out" "$proto_file"
           #gRPC-Web
-          protoc --plugin=protoc-gen-grpc-web --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
+          protoc --plugin="protoc-gen-grpc-web=$grpc_web_plugin_path" --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
         done
 
     - name: Commit and push changes
