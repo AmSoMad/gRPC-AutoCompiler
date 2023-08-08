@@ -57,6 +57,8 @@ jobs:
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
       run: |
+        #Dart Protobuf Plugin Path
+        dart_protoc_plugin_path=$(pub global path protoc_plugin)/bin/protoc-gen-dart
         find . -name "*.proto" | while read -r proto_file; do
           dir=$(dirname "$proto_file")
           filename=$(basename -- "$proto_file")
@@ -74,7 +76,7 @@ jobs:
           #Java
           protoc --java_out="$output_dir/java_out" "$proto_file"
           #Dart
-          protoc --dart_out="$output_dir/dart_out" "$proto_file"
+          protoc --plugin="protoc-gen-dart=$dart_protoc_plugin_path" --dart_out="$output_dir/dart_out" "$proto_file"
           #Go
           # protoc --go_out="$output_dir/go_out" "$proto_file"
           #gRPC-Web
