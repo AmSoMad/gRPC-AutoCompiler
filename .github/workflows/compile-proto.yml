@@ -58,7 +58,7 @@ jobs:
     - name: Compile Protobuf Files
       run: |
         #Dart Protobuf Plugin Path
-        dart_protoc_plugin_path=$(dart pub global path protoc_plugin)/bin/protoc-gen-dart
+        dart_protoc_plugin_path="$HOME/.pub-cache/bin/protoc-gen-dart"
         find . -name "*.proto" | while read -r proto_file; do
           dir=$(dirname "$proto_file")
           filename=$(basename -- "$proto_file")
