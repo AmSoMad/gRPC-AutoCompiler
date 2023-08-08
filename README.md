@@ -6,6 +6,26 @@
 github action을 통하여 proto파일이 들어오게되면 <br>
 자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다. <br>
 
+## gRPC-AutoCompiler
+
+[Repository URL](https://github.com/AmSoMad/gRPC-AutoCompiler)
+
+github action을 통하여 proto파일이 들어오게 되면 자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다.
+
+### 지원하는 언어
+
+
+| 언어       | 아이콘                                                                                      |
+|------------|-------------------------------------------------------------------------------------------|
+| C#         | ![C#](https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png)       |
+| JavaScript | ![JavaScript](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png) |
+| Java       | ![Java](https://raw.githubusercontent.com/github/explore/main/topics/java/java.png)         |
+| Dart       | ![Dart](https://raw.githubusercontent.com/github/explore/main/topics/dart/dart.png)         |
+| gRPC-Web   | ![gRPC](https://raw.githubusercontent.com/github/explore/main/topics/grpc/grpc.png)         |
+
+각 언어별로 자세한 컴파일 단계를 포함하는 workflow가 구현되어 있습니다.
+
+
 ## 목적
 
 이 저장소는 gRPC 프로토콜을 사용하는 다양한 언어로 작성된 서비스에 대한 <br>
