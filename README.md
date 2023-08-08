@@ -1,16 +1,10 @@
 
-# gRPC-AutoCompiler
-
-[GitHub Repo](https://github.com/AmSoMad/gRPC-AutoCompiler)
-
-github action을 통하여 proto파일이 들어오게되면 <br>
-자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다. <br>
-
 ## gRPC-AutoCompiler
 
 [Repository URL](https://github.com/AmSoMad/gRPC-AutoCompiler)
 
-github action을 통하여 proto파일이 들어오게 되면 자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다.
+github action을 통하여 proto파일이 들어오게되면 <br>
+자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다. <br>
 
 ### 지원하는 언어
 
