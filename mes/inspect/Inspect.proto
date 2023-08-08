@@ -8,7 +8,6 @@ syntax = "proto3";
 // python : package
 // Dart : package
 option csharp_namespace = "InspectGrpcService";
-
 option java_package = "com.inspect";
 option java_multiple_files = true;
 option java_outer_classname = "InspectProto";
@@ -17,9 +16,9 @@ package inspect;
 
 // 해당 파일에서 사용할 수 있는 다른 proto 파일을 import 한다.
 import "google/protobuf/timestamp.proto";
-// import "google/protobuf/duration.proto";
-// import "google/protobuf/wrappers.proto";
-// import "google/protobuf/empty.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
 
 service Inspecter {
   rpc GetPart (PartRequest) returns (PartReply);
