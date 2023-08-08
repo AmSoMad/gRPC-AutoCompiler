@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '**/*.proto'
-      - '**/*.yaml'
+      - '**/*.yml'
 
 jobs:
   compile:
