@@ -19,11 +19,11 @@ gRPC와 여러 프로그래밍 언어를 활용하여 마이크로서비스 구�
 
 | 언어       | 아이콘                                                                                              |
 |------------|-------------------------------------------------------------------------------------------------------|
-| C#         | <img src="https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png" width="30" height="30"> |
-| JavaScript | <img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" width="30" height="30"> |
-| Java       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" width="30" height="30">     |
-| Dart       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/dart/dart.png" width="30" height="30">     |
-| gRPC-Web   | <img src="https://raw.githubusercontent.com/github/explore/main/topics/grpc/grpc.png" width="30" height="30">     |
+| C#         | <img src="https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png" width="50" height="50"> |
+| JavaScript | <img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" width="50" height="50"> |
+| Java       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" width="50" height="50">     |
+| Dart       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/dart/dart.png" width="50" height="50">     |
+| gRPC-Web   | <img src="https://raw.githubusercontent.com/github/explore/main/topics/grpc/grpc.png" width="50" height="50">     |
 
 각 언어별로 자세한 컴파일 단계를 포함하는 workflow가 구현되어 있습니다.
 
