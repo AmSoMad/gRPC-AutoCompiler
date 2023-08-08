@@ -67,6 +67,31 @@ Protobuf Compiler, gRPC-Web Protobuf Plugin, Dart SDK 등 필요한 도구와 �
       env:
         GITHUB_TOKEN: ${{ secrets.GRPC_AUTOCOMPILER_TOKEN }}
 ```
+### GitHub Secrets 설정
+
+이 Workflow에서는 GitHub secrets을 사용하여 보안 토큰을 안전하게 저장하고 관리합니다. GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안전하게 보관할 수 있는 기능입니다.
+
+다음과 같은 환경 변수에서 secret을 사용하고 있습니다:
+
+```yaml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GRPC_AUTOCOMPILER_TOKEN }}
+```
+
+이 경우 `GRPC_AUTOCOMPILER_TOKEN`은 GitHub에 저장된 secret의 이름으로, 해당 토큰은 저장소에 커밋과 푸시를 할 수 있는 권한을 부여해야 합니다.
+
+#### Secrets 추가 방법
+
+1. GitHub 저장소의 'Settings'으로 이동합니다.
+2. 'Secrets' 섹션을 클릭합니다.
+3. 'New repository secret' 버튼을 클릭하여 새로운 secret을 추가합니다.
+4. 이름에 `GRPC_AUTOCOMPILER_TOKEN`을 입력하고 값에 해당 토큰의 값을 입력합니다.
+5. 'Add secret'을 클릭하여 저장합니다.
+
+이제 GitHub Action이 이 secret을 사용하여 필요한 권한으로 작업을 수행할 수 있습니다. 이러한 방식으로 중요한 정보를 코드나 로그에서 숨길 수 있어 안전하게 사용할 수 있습니다.
+```
+
+이 설명은 사용자가 GitHub secrets을 설정하는 방법을 자세히 알려줍니다. 설명에 필요한 추가 정보가 있으면 알려주세요!
 
 ## 사용 방법
 
