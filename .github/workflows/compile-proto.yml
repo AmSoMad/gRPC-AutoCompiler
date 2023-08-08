@@ -39,6 +39,9 @@ jobs:
     - name: Install Protobuf Compiler
       run: sudo apt-get install -y protobuf-compiler
 
+    - name: Add Dart SDK to PATH
+      run: echo "$(dirname $(which dart))/../lib/dart/bin" >> $GITHUB_PATH
+
     - name: Install Dart Protobuf Plugin
       run: |
         sudo apt-get install -y dart
