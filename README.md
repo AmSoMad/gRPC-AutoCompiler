@@ -1,10 +1,22 @@
 
 ## gRPC-AutoCompiler
 
-[Repository URL](https://github.com/AmSoMad/gRPC-AutoCompiler)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repo-blue?style=flat&logo=github)](https://github.com/AmSoMad/gRPC-AutoCompiler)
 
-github action을 통하여 proto파일이 들어오게되면 <br>
-자동으로 action이 감지하여 컴파일을 해서 push를 해주는게 이 repo의 목적입니다. <br>
+**gRPC-AutoCompiler**는 새로운 시대의 프로토콜 컴파일링 자동화를 목표로 합니다. <br>
+이 저장소는 proto 파일의 변경 사항을 자동으로 감지하고 <br>
+필요한 컴파일 작업을 수행한 후 결과를 저장소에 푸시합니다. <br>
+
+gRPC와 여러 프로그래밍 언어를 활용하여 마이크로서비스 구조를 개발하는 <br>
+개발자들에게 완벽한 해결책을 제공합니다. <br>
+수동 컴파일링의 번거로움 없이, 소스 코드를 저장소에 푸시하기만 하면 <br>
+나머지는 **gRPC-AutoCompiler**가 알아서 처리합니다.<br>
+
+이 프로젝트를 활용하면 개발 시간을 절약하고, 프로토콜 정의의 일관성을 유지하면서 효율적인 협업을 도모할 수 있습니다.
+
+개발자, 엔지니어, 시스템 아키텍트 모두에게 유용한 이 툴을 지금 바로 사용해보세요!
+
+---
 
 ### 지원하는 언어
 
