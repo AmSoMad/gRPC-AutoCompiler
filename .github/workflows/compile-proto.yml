@@ -27,6 +27,17 @@ jobs:
     - name: Install TypeScript Protobuf Plugin
       run: npm install -g ts-protoc-gen
 
+    - name: Install Dart SDK
+      run: sudo apt-get install -y dart
+
+    - name: Install Protobuf Compiler
+      run: sudo apt-get install -y protobuf-compiler
+
+    - name: Install Dart Protobuf Plugin
+      run: |
+        sudo apt-get install -y dart
+        pub global activate protoc_plugin      
+
     # - name: Setup Go
     #   uses: actions/setup-go@v2
     #   with:
@@ -52,14 +63,24 @@ jobs:
           dir=$(dirname "$proto_file")
           filename=$(basename -- "$proto_file")
           name_no_ext="${filename%.*}"
-          mkdir -p "$dir/$name_no_ext/csharp_out" "$dir/$name_no_ext/js_out" "$dir/$name_no_ext/ts_out" "$dir/$name_no_ext/java_out" "$dir/$name_no_ext/dart_out" "$dir/$name_no_ext/go_out"
-          protoc --csharp_out="$dir/$name_no_ext/csharp_out" "$proto_file"
-          protoc --js_out=import_style=commonjs,binary:"$dir/$name_no_ext/js_out" "$proto_file"
-          protoc --plugin=protoc-gen-grpc-web --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$dir/$name_no_ext/grpc_web_out" "$proto_file"
-          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/$name_no_ext/ts_out" "$proto_file"
-          protoc --java_out="$dir/$name_no_ext/java_out" "$proto_file"
-          # protoc --dart_out="$dir/$name_no_ext/dart_out" "$proto_file"
-          # protoc --go_out="$dir/$name_no_ext/go_out" "$proto_file"
+          output_dir="$dir/$name_no_ext"
+          if [ -d "$output_dir" ]; then
+            rm -r "$output_dir"
+          fi
+          mkdir -p "$output_dir/csharp_out" "$output_dir/js_out" "$output_dir/ts_out" "$output_dir/java_out" "$output_dir/dart_out" "$output_dir/go_out" "$output_dir/grpc_web_out"
+          #C#
+          protoc --csharp_out="$output_dir/csharp_out" "$proto_file"
+          #JavaScript
+          protoc --js_out=import_style=commonjs,binary:"$output_dir/js_out" "$proto_file"
+          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$output_dir/ts_out" "$proto_file"
+          #Java
+          protoc --java_out="$output_dir/java_out" "$proto_file"
+          #Dart
+          protoc --dart_out="$output_dir/dart_out" "$proto_file"
+          #Go
+          # protoc --go_out="$output_dir/go_out" "$proto_file"
+          #gRPC-Web
+          protoc --plugin=protoc-gen-grpc-web --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
         done
 
     - name: Commit and push changes
