@@ -55,6 +55,7 @@ jobs:
           mkdir -p "$dir/$name_no_ext/csharp_out" "$dir/$name_no_ext/js_out" "$dir/$name_no_ext/ts_out" "$dir/$name_no_ext/java_out" "$dir/$name_no_ext/dart_out" "$dir/$name_no_ext/go_out"
           protoc --csharp_out="$dir/$name_no_ext/csharp_out" "$proto_file"
           protoc --js_out=import_style=commonjs,binary:"$dir/$name_no_ext/js_out" "$proto_file"
+          protoc --plugin=protoc-gen-grpc-web --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$dir/$name_no_ext/grpc_web_out" "$proto_file"
           # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/$name_no_ext/ts_out" "$proto_file"
           protoc --java_out="$dir/$name_no_ext/java_out" "$proto_file"
           # protoc --dart_out="$dir/$name_no_ext/dart_out" "$proto_file"
