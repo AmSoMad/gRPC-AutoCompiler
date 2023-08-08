@@ -44,6 +44,14 @@ jobs:
         sudo apt-get install -y dart
         dart pub global activate protoc_plugin
 
+    - name: Install protoc-gen-grpc-web
+      run: |
+        VERSION=1.4.2
+        sudo wget https://github.com/grpc/grpc-web/releases/download/$VERSION/protoc-gen-grpc-web-$VERSION-linux-x86_64 \
+        -O /usr/local/bin/protoc-gen-grpc-web
+        sudo chmod +x /usr/local/bin/protoc-gen-grpc-web
+      
+
     # - name: Setup Go
     #   uses: actions/setup-go@v2
     #   with:
