@@ -48,14 +48,17 @@ jobs:
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
       run: |
-        find . -name "*.proto" -exec dirname {} \; | sort -u | while read -r dir; do
-          mkdir -p "$dir/csharp_out" "$dir/js_out" "$dir/ts_out" "$dir/java_out" "$dir/dart_out" "$dir/go_out"
-          protoc --csharp_out="$dir/csharp_out" "$dir"/*.proto
-          protoc --js_out=import_style=commonjs,binary:"$dir/js_out" "$dir"/*.proto
-          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/ts_out" "$dir"/*.proto
-          protoc --java_out="$dir/java_out" "$dir"/*.proto
-          # protoc --dart_out="$dir/dart_out" "$dir"/*.proto
-          # protoc --go_out="$dir/go_out" "$dir"/*.proto
+        find . -name "*.proto" | while read -r proto_file; do
+          dir=$(dirname "$proto_file")
+          filename=$(basename -- "$proto_file")
+          name_no_ext="${filename%.*}"
+          mkdir -p "$dir/$name_no_ext/csharp_out" "$dir/$name_no_ext/js_out" "$dir/$name_no_ext/ts_out" "$dir/$name_no_ext/java_out" "$dir/$name_no_ext/dart_out" "$dir/$name_no_ext/go_out"
+          protoc --csharp_out="$dir/$name_no_ext/csharp_out" "$proto_file"
+          protoc --js_out=import_style=commonjs,binary:"$dir/$name_no_ext/js_out" "$proto_file"
+          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$dir/$name_no_ext/ts_out" "$proto_file"
+          protoc --java_out="$dir/$name_no_ext/java_out" "$proto_file"
+          # protoc --dart_out="$dir/$name_no_ext/dart_out" "$proto_file"
+          # protoc --go_out="$dir/$name_no_ext/go_out" "$proto_file"
         done
 
     - name: Commit and push changes
