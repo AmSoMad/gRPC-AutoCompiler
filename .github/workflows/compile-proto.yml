@@ -35,13 +35,14 @@ jobs:
         sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
         sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
         sudo apt-get update
-        sudo apt-get install dart
 
     - name: Add Dart SDK to PATH
       run: echo "$(dirname $(which dart))/../lib/dart/bin" >> $GITHUB_PATH
 
     - name: Install Dart Protobuf Plugin
-      run: dart pub global activate protoc_plugin
+      run: |
+        sudo apt-get install -ydart
+        dart pub global activate protoc_plugin
 
     # - name: Setup Go
     #   uses: actions/setup-go@v2
@@ -52,14 +53,6 @@ jobs:
     #   run: |
     #     go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
     #     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
-
-    # - name: Add Go Protobuf Plugin to Path
-    #   run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
-
-    # - name: Install Dart Protobuf Plugin
-    #   run: |
-    #     sudo apt-get install -y dart
-    #     pub global activate protoc_plugin
 
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
