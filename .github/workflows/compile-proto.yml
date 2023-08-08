@@ -41,7 +41,7 @@ jobs:
 
     - name: Install Dart Protobuf Plugin
       run: |
-        sudo apt-get install -ydart
+        sudo apt-get install -y dart
         dart pub global activate protoc_plugin
 
     # - name: Setup Go
