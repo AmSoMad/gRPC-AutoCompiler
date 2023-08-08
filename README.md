@@ -69,7 +69,8 @@ Protobuf Compiler, gRPC-Web Protobuf Plugin, Dart SDK 등 필요한 도구와 �
 ```
 ### GitHub Secrets 설정
 
-이 Workflow에서는 GitHub secrets을 사용하여 보안 토큰을 안전하게 저장하고 관리합니다. GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안전하게 보관할 수 있는 기능입니다.
+이 Workflow에서는 GitHub secrets을 사용하여 보안 토큰을 안전하게 저장하고 관리합니다. 
+GitHub secrets은 민감한 정보를 저장소와 코드에서 분리하여 안전하게 보관할 수 있는 기능입니다.
 
 다음과 같은 환경 변수에서 secret을 사용하고 있습니다:
 
