@@ -14,9 +14,6 @@ github action을 통하여 proto파일이 들어오게 되면 자동으로 actio
 
 ### 지원하는 언어
 
-### 지원하는 언어
-
-
 | 언어       | 아이콘                                                                                              |
 |------------|-------------------------------------------------------------------------------------------------------|
 | C#         | <img src="https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png" width="30" height="30"> |
@@ -24,15 +21,6 @@ github action을 통하여 proto파일이 들어오게 되면 자동으로 actio
 | Java       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" width="30" height="30">     |
 | Dart       | <img src="https://raw.githubusercontent.com/github/explore/main/topics/dart/dart.png" width="30" height="30">     |
 | gRPC-Web   | <img src="https://raw.githubusercontent.com/github/explore/main/topics/grpc/grpc.png" width="30" height="30">     |
-
-
-| 언어       | 아이콘                                                                                      |
-|------------|-------------------------------------------------------------------------------------------|
-| C#         | ![C#](https://raw.githubusercontent.com/github/explore/main/topics/csharp/csharp.png)       |
-| JavaScript | ![JavaScript](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png) |
-| Java       | ![Java](https://raw.githubusercontent.com/github/explore/main/topics/java/java.png)         |
-| Dart       | ![Dart](https://raw.githubusercontent.com/github/explore/main/topics/dart/dart.png)         |
-| gRPC-Web   | ![gRPC](https://raw.githubusercontent.com/github/explore/main/topics/grpc/grpc.png)         |
 
 각 언어별로 자세한 컴파일 단계를 포함하는 workflow가 구현되어 있습니다.
 
