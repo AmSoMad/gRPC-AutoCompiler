@@ -71,6 +71,7 @@ jobs:
     # 각 언어별 컴파일 단계 추가
     - name: Compile Protobuf Files
       run: |
+        current_date=$(date +"%Y-%m-%d")
         #Dart Protobuf Plugin Path
         grpc_web_plugin_path="/usr/local/bin/protoc-gen-grpc-web"
         dart_protoc_plugin_path="$HOME/.pub-cache/bin/protoc-gen-dart"
@@ -78,7 +79,7 @@ jobs:
           dir=$(dirname "$proto_file")
           filename=$(basename -- "$proto_file")
           name_no_ext="${filename%.*}"
-          output_dir="$dir/$name_no_ext"
+          output_dir="$dir/$current_date/$name_no_ext"
           if [ -d "$output_dir" ]; then
             rm -r "$output_dir"
           fi
@@ -87,18 +88,16 @@ jobs:
           protoc --csharp_out="$output_dir/csharp_out" "$proto_file"
           #JavaScript
           protoc --js_out=import_style=commonjs,binary:"$output_dir/js_out" "$proto_file"
-          # protoc --plugin="protoc-gen-ts=$(npm bin -g)/protoc-gen-ts" --ts_out="$output_dir/ts_out" "$proto_file"
           #Java
           protoc --java_out="$output_dir/java_out" "$proto_file"
           #Dart
           protoc --plugin="protoc-gen-dart=$dart_protoc_plugin_path" --dart_out="$output_dir/dart_out" "$proto_file"
-          #Go
-          # protoc --go_out="$output_dir/go_out" "$proto_file"
           #gRPC-Web
           protoc --plugin="protoc-gen-grpc-web=$grpc_web_plugin_path" --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
           #Python
           protoc --python_out="$output_dir/python_out" --pyi_out="$output_dir/python_out" --grpc_python_out="$output_dir/python_out" "$proto_file"
         done
+
 
     - name: Commit and push changes
       run: |
