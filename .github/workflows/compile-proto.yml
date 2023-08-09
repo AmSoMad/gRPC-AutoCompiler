@@ -80,6 +80,11 @@ jobs:
           filename=$(basename -- "$proto_file")
           name_no_ext="${filename%.*}"
           output_dir="$dir/$current_date/$name_no_ext"
+          output_proto_dir="$dir/$current_date"
+          if [ ! -d "$output_proto_dir" ]; then
+            mkdir -p "$output_proto_dir"
+            cp "$proto_file" "$output_proto_dir/"
+          fi
           if [ -d "$output_dir" ]; then
             rm -r "$output_dir"
           fi
