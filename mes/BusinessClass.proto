@@ -10,8 +10,8 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 
 service BusinessClass {
-   rpc GetFor업체정보 (GetFor업체정보Request) returns (BusinessClassSetResponse);
-   rpc GetFor업체정보Json (GetFor업체정보Request) returns (BusinessClassSetResponse);
+   rpc GetForCompanyInformation (GetForCompanyInformationRequest) returns (BusinessClassSetResponse);
+   rpc GetForCompanyInformationJson (GetForCompanyInformationRequest) returns (BusinessClassSetResponse);
    rpc GetByKey (GetByKeyRequest) returns (BusinessClassResponse);
    rpc GetByKeyJson (GetByKeyRequest) returns (BusinessClassResponse);
    rpc GetAll (google.protobuf.Empty) returns (BusinessClassSetResponse);
@@ -40,7 +40,7 @@ message DataSetResponse {
    bytes dataSet = 1;
    string jsonString = 2;
 }
-message GetFor업체정보Request {
+message GetForCompanyInformationRequest {
   string  lCNS_NO = 1;
 }
 message GetByKeyRequest {
