@@ -44,12 +44,12 @@ message GetByKeyRequest {
 message InsertRequest {
    sint32 commodityCode = 1;
    string commodityName = 2;
-   google.protobuf.Int32Value 재고정보사용유무 = 3;
+   google.protobuf.Int32Value useInventoryInformation = 3;
 }
 message UpdateRequest {
    sint32 commodityCode = 1;
    string commodityName = 2;
-   google.protobuf.Int32Value 재고정보사용유무 = 3;
+   google.protobuf.Int32Value useInventoryInformation = 3;
 }
 
 message UpdateResponse {
