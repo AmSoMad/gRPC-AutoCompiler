@@ -1,0 +1,105 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.ContractProtos";
+
+package ContractSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Contract {
+   rpc GetForDept_Sale (GetForDept_SaleRequest) returns (ContractSetResponse);
+   rpc GetForDept_SaleJson (GetForDept_SaleRequest) returns (ContractSetResponse);
+   rpc GetForEmployees (GetForEmployeesRequest) returns (ContractSetResponse);
+   rpc GetForEmployeesJson (GetForEmployeesRequest) returns (ContractSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (ContractResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (ContractResponse);
+   rpc GetAll (google.protobuf.Empty) returns (ContractSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (ContractSetResponse);
+   rpc Insert (InsertRequest) returns (ContractResponse);
+   rpc InsertJson (InsertRequest) returns (ContractResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message ContractResponse {
+   bytes contract = 1;
+   string jsonString = 2;
+}
+message ContractSetResponse {
+   bytes contractSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForDept_SaleRequest {
+  sint32  deptCode = 1;
+}
+message GetForEmployeesRequest {
+  string  employeeCode = 1;
+}
+message GetByKeyRequest {
+   string contractNo = 1;
+}
+message InsertRequest {
+   string contractNo = 1;
+   sint32 contractFlag = 2;
+   google.protobuf.Timestamp startDate = 3;
+   google.protobuf.Timestamp endDate = 4;
+   google.protobuf.StringValue section = 5;
+   oneof oneofAmount { GrpcDecimal amount = 6; }
+   GrpcDecimal vAT = 7;
+   google.protobuf.Timestamp contractDate = 8;
+   string remark = 9;
+   google.protobuf.Int32Value deptCode = 10;
+   string employeeCode = 11;
+   oneof oneofSaleToAmt { GrpcDecimal saleToAmt = 12; }
+   google.protobuf.Int32Value saleIssueMethod = 13;
+   sint32 moneyConditionCode = 14;
+   double progressFlag = 15;
+   oneof oneofEntryDate { google.protobuf.Timestamp entryDate = 16; }
+   google.protobuf.StringValue userCode = 17;
+}
+message UpdateRequest {
+   string contractNo = 1;
+   sint32 contractFlag = 2;
+   google.protobuf.Timestamp startDate = 3;
+   google.protobuf.Timestamp endDate = 4;
+   google.protobuf.StringValue section = 5;
+   oneof oneofAmount { GrpcDecimal amount = 6; }
+   GrpcDecimal vAT = 7;
+   google.protobuf.Timestamp contractDate = 8;
+   string remark = 9;
+   google.protobuf.Int32Value deptCode = 10;
+   string employeeCode = 11;
+   oneof oneofSaleToAmt { GrpcDecimal saleToAmt = 12; }
+   google.protobuf.Int32Value saleIssueMethod = 13;
+   sint32 moneyConditionCode = 14;
+   double progressFlag = 15;
+   oneof oneofEntryDate { google.protobuf.Timestamp entryDate = 16; }
+   google.protobuf.StringValue userCode = 17;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string contractNo = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

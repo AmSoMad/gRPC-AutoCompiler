@@ -1,0 +1,65 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.AssetsTypesProtos";
+
+package AssetsTypesSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service AssetsTypes {
+   rpc GetByKey (GetByKeyRequest) returns (AssetsTypesResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (AssetsTypesResponse);
+   rpc GetAll (google.protobuf.Empty) returns (AssetsTypesSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (AssetsTypesSetResponse);
+   rpc Insert (InsertRequest) returns (AssetsTypesResponse);
+   rpc InsertJson (InsertRequest) returns (AssetsTypesResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message AssetsTypesResponse {
+   bytes assetsTypes = 1;
+   string jsonString = 2;
+}
+message AssetsTypesSetResponse {
+   bytes assetsTypesSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   sint32 assetsType = 1;
+}
+message InsertRequest {
+   sint32 assetsType = 1;
+   string assetsTypeName = 2;
+}
+message UpdateRequest {
+   sint32 assetsType = 1;
+   string assetsTypeName = 2;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 assetsType = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

@@ -1,0 +1,101 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CustomersProtos";
+
+package CustomersSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Customers {
+   rpc GetByKey (GetByKeyRequest) returns (CustomersResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CustomersResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CustomersSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CustomersSetResponse);
+   rpc Insert (InsertRequest) returns (CustomersResponse);
+   rpc InsertJson (InsertRequest) returns (CustomersResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CustomersResponse {
+   bytes customers = 1;
+   string jsonString = 2;
+}
+message CustomersSetResponse {
+   bytes customersSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   string customerCode = 1;
+}
+message InsertRequest {
+   string customerCode = 1;
+   string customerName = 2;
+   string president = 3;
+   string personNo = 4;
+   string zipCode = 5;
+   string address = 6;
+   google.protobuf.StringValue address2 = 7;
+   string businessType = 8;
+   string businessItem = 9;
+   google.protobuf.StringValue phone = 10;
+   google.protobuf.StringValue fax = 11;
+   google.protobuf.StringValue primaryPersonName = 12;
+   google.protobuf.StringValue primaryDepartment = 13;
+   google.protobuf.StringValue primaryTelephone = 14;
+   google.protobuf.StringValue primaryEmail = 15;
+   google.protobuf.StringValue email = 16;
+   google.protobuf.StringValue businessCode = 17;
+   sint32 unUsedFlag = 18;
+   google.protobuf.StringValue 대표Email = 19;
+   google.protobuf.Int32Value customerType = 20;
+}
+message UpdateRequest {
+   string customerCode = 1;
+   string customerName = 2;
+   string president = 3;
+   string personNo = 4;
+   string zipCode = 5;
+   string address = 6;
+   google.protobuf.StringValue address2 = 7;
+   string businessType = 8;
+   string businessItem = 9;
+   google.protobuf.StringValue phone = 10;
+   google.protobuf.StringValue fax = 11;
+   google.protobuf.StringValue primaryPersonName = 12;
+   google.protobuf.StringValue primaryDepartment = 13;
+   google.protobuf.StringValue primaryTelephone = 14;
+   google.protobuf.StringValue primaryEmail = 15;
+   google.protobuf.StringValue email = 16;
+   google.protobuf.StringValue businessCode = 17;
+   sint32 unUsedFlag = 18;
+   google.protobuf.StringValue 대표Email = 19;
+   google.protobuf.Int32Value customerType = 20;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string customerCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

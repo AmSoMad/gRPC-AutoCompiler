@@ -1,0 +1,79 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CalendarTypeProtos";
+
+package CalendarTypeSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service CalendarType {
+   rpc GetByKey (GetByKeyRequest) returns (CalendarTypeResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CalendarTypeResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CalendarTypeSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CalendarTypeSetResponse);
+   rpc Insert (InsertRequest) returns (CalendarTypeResponse);
+   rpc InsertJson (InsertRequest) returns (CalendarTypeResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CalendarTypeResponse {
+   bytes calendarType = 1;
+   string jsonString = 2;
+}
+message CalendarTypeSetResponse {
+   bytes calendarTypeSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   sint32 calendarType = 1;
+}
+message InsertRequest {
+   sint32 calendarType = 1;
+   string calendarTypeName = 2;
+   sint32 mon = 3;
+   sint32 tue = 4;
+   sint32 wed = 5;
+   sint32 thu = 6;
+   sint32 fri = 7;
+   sint32 sat = 8;
+   sint32 sun = 9;
+}
+message UpdateRequest {
+   sint32 calendarType = 1;
+   string calendarTypeName = 2;
+   sint32 mon = 3;
+   sint32 tue = 4;
+   sint32 wed = 5;
+   sint32 thu = 6;
+   sint32 fri = 7;
+   sint32 sat = 8;
+   sint32 sun = 9;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 calendarType = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

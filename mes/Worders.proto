@@ -1,0 +1,137 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.WordersProtos";
+
+package WordersSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Worders {
+   rpc GetForBusinessClass_Sale (GetForBusinessClass_SaleRequest) returns (WordersSetResponse);
+   rpc GetForBusinessClass_SaleJson (GetForBusinessClass_SaleRequest) returns (WordersSetResponse);
+   rpc GetForCustomers (GetForCustomersRequest) returns (WordersSetResponse);
+   rpc GetForCustomersJson (GetForCustomersRequest) returns (WordersSetResponse);
+   rpc GetForWorkers (GetForWorkersRequest) returns (WordersSetResponse);
+   rpc GetForWorkersJson (GetForWorkersRequest) returns (WordersSetResponse);
+   rpc GetForRoutes (GetForRoutesRequest) returns (WordersSetResponse);
+   rpc GetForRoutesJson (GetForRoutesRequest) returns (WordersSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (WordersResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (WordersResponse);
+   rpc GetAll (google.protobuf.Empty) returns (WordersSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (WordersSetResponse);
+   rpc Insert (InsertRequest) returns (WordersResponse);
+   rpc InsertJson (InsertRequest) returns (WordersResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message WordersResponse {
+   bytes worders = 1;
+   string jsonString = 2;
+}
+message WordersSetResponse {
+   bytes wordersSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForBusinessClass_SaleRequest {
+  sint32  businessClassCode = 1;
+}
+message GetForCustomersRequest {
+  string  customerCode = 1;
+}
+message GetForWorkersRequest {
+  string  workerCode = 1;
+}
+message GetForRoutesRequest {
+  string  route = 1;
+}
+message GetByKeyRequest {
+   string worksOrderNo = 1;
+}
+message InsertRequest {
+   string worksOrderNo = 1;
+   sint32 serialNo = 2;
+   sint32 priority = 3;
+   google.protobuf.Timestamp originalStartDate = 4;
+   google.protobuf.Timestamp originalDueDate = 5;
+   oneof oneofActualStartDate { google.protobuf.Timestamp actualStartDate = 6; }
+   oneof oneofActualDueDate { google.protobuf.Timestamp actualDueDate = 7; }
+   GrpcDecimal stdMaterialCost = 8;
+   GrpcDecimal actMaterialCost = 9;
+   GrpcDecimal stdLabCost = 10;
+   GrpcDecimal actLabCost = 11;
+   GrpcDecimal stdSetupCost = 12;
+   GrpcDecimal actSetupCost = 13;
+   GrpcDecimal stdOverheadCost = 14;
+   GrpcDecimal actOverheadCost = 15;
+   string completedFlag = 16;
+   sint32 issuedFlag = 17;
+   sint32 directChargeFlag = 18;
+   sint32 currentKitNo = 19;
+   sint32 reprintReqFlag = 20;
+   sint32 orderStatusFlag = 21;
+   google.protobuf.Int32Value businessClassCode = 22;
+   google.protobuf.StringValue originalWorksOrderNo = 23;
+   google.protobuf.StringValue remarks = 24;
+   google.protobuf.StringValue customerCode = 25;
+   sint32 wOrderType = 26;
+   google.protobuf.StringValue workerCode = 27;
+   google.protobuf.StringValue route = 28;
+}
+message UpdateRequest {
+   string worksOrderNo = 1;
+   sint32 serialNo = 2;
+   sint32 priority = 3;
+   google.protobuf.Timestamp originalStartDate = 4;
+   google.protobuf.Timestamp originalDueDate = 5;
+   oneof oneofActualStartDate { google.protobuf.Timestamp actualStartDate = 6; }
+   oneof oneofActualDueDate { google.protobuf.Timestamp actualDueDate = 7; }
+   GrpcDecimal stdMaterialCost = 8;
+   GrpcDecimal actMaterialCost = 9;
+   GrpcDecimal stdLabCost = 10;
+   GrpcDecimal actLabCost = 11;
+   GrpcDecimal stdSetupCost = 12;
+   GrpcDecimal actSetupCost = 13;
+   GrpcDecimal stdOverheadCost = 14;
+   GrpcDecimal actOverheadCost = 15;
+   string completedFlag = 16;
+   sint32 issuedFlag = 17;
+   sint32 directChargeFlag = 18;
+   sint32 currentKitNo = 19;
+   sint32 reprintReqFlag = 20;
+   sint32 orderStatusFlag = 21;
+   google.protobuf.Int32Value businessClassCode = 22;
+   google.protobuf.StringValue originalWorksOrderNo = 23;
+   google.protobuf.StringValue remarks = 24;
+   google.protobuf.StringValue customerCode = 25;
+   sint32 wOrderType = 26;
+   google.protobuf.StringValue workerCode = 27;
+   google.protobuf.StringValue route = 28;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string worksOrderNo = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

@@ -1,0 +1,67 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CostCenterTypesProtos";
+
+package CostCenterTypesSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service CostCenterTypes {
+   rpc GetByKey (GetByKeyRequest) returns (CostCenterTypesResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CostCenterTypesResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CostCenterTypesSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CostCenterTypesSetResponse);
+   rpc Insert (InsertRequest) returns (CostCenterTypesResponse);
+   rpc InsertJson (InsertRequest) returns (CostCenterTypesResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CostCenterTypesResponse {
+   bytes costCenterTypes = 1;
+   string jsonString = 2;
+}
+message CostCenterTypesSetResponse {
+   bytes costCenterTypesSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   string costCenterType = 1;
+}
+message InsertRequest {
+   string costCenterType = 1;
+   string costCenterTypeName = 2;
+   sint32 typeSeqNo = 3;
+}
+message UpdateRequest {
+   string costCenterType = 1;
+   string costCenterTypeName = 2;
+   sint32 typeSeqNo = 3;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string costCenterType = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

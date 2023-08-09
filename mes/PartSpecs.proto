@@ -1,0 +1,145 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.PartSpecsProtos";
+
+package PartSpecsSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service PartSpecs {
+   rpc GetForParts (GetForPartsRequest) returns (PartSpecsSetResponse);
+   rpc GetForPartsJson (GetForPartsRequest) returns (PartSpecsSetResponse);
+   rpc GetForPartGroup (GetForPartGroupRequest) returns (PartSpecsSetResponse);
+   rpc GetForPartGroupJson (GetForPartGroupRequest) returns (PartSpecsSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (PartSpecsResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (PartSpecsResponse);
+   rpc GetAll (google.protobuf.Empty) returns (PartSpecsSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (PartSpecsSetResponse);
+   rpc Insert (InsertRequest) returns (PartSpecsResponse);
+   rpc InsertJson (InsertRequest) returns (PartSpecsResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message PartSpecsResponse {
+   bytes partSpecs = 1;
+   string jsonString = 2;
+}
+message PartSpecsSetResponse {
+   bytes partSpecsSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForPartsRequest {
+  string  partCode = 1;
+}
+message GetForPartGroupRequest {
+  string  partGroupCode = 1;
+}
+message GetByKeyRequest {
+   string partCode = 1;
+   string partSpec = 2;
+}
+message InsertRequest {
+   string partCode = 1;
+   string partSpec = 2;
+   GrpcDecimal logicalWeight = 3;
+   GrpcDecimal scrapPercent = 4;
+   string bin = 5;
+   google.protobuf.Timestamp nextCycleCount = 6;
+   sint32 unUseFlag = 7;
+   GrpcDecimal standardCost = 8;
+   GrpcDecimal currentCost = 9;
+   string partType = 10;
+   GrpcDecimal safetyQty2 = 11;
+   GrpcDecimal reOrderLevel2 = 12;
+   string partName2 = 13;
+   google.protobuf.Int32Value stockTypeFlag = 14;
+   GrpcDecimal packingUnitQuantity = 15;
+   sint32 lOTQty = 16;
+   sint32 roundingFlag = 17;
+   string partCodeX = 18;
+   string partSpecX = 19;
+   google.protobuf.StringValue measureUnit = 20;
+   google.protobuf.StringValue route = 21;
+   google.protobuf.Int32Value commodityCode = 22;
+   google.protobuf.StringValue remarks = 23;
+   sint32 orderLeadTime = 24;
+   sint32 orderCoverPeriod = 25;
+   sint32 orderIncrement = 26;
+   google.protobuf.StringValue model = 27;
+   google.protobuf.Int32Value 성형판수 = 28;
+   google.protobuf.StringValue partGroupCode = 29;
+   google.protobuf.Int32Value seqNo = 30;
+   google.protobuf.StringValue partShortName = 31;
+   google.protobuf.StringValue partClass = 32;
+   google.protobuf.StringValue 식약청품목코드 = 33;
+   oneof oneof수율 { GrpcDecimal 수율 = 34; }
+   google.protobuf.Int32Value partType2 = 35;
+   google.protobuf.StringValue barCode = 36;
+}
+message UpdateRequest {
+   string partCode = 1;
+   string partSpec = 2;
+   GrpcDecimal logicalWeight = 3;
+   GrpcDecimal scrapPercent = 4;
+   string bin = 5;
+   google.protobuf.Timestamp nextCycleCount = 6;
+   sint32 unUseFlag = 7;
+   GrpcDecimal standardCost = 8;
+   GrpcDecimal currentCost = 9;
+   string partType = 10;
+   GrpcDecimal safetyQty2 = 11;
+   GrpcDecimal reOrderLevel2 = 12;
+   string partName2 = 13;
+   google.protobuf.Int32Value stockTypeFlag = 14;
+   GrpcDecimal packingUnitQuantity = 15;
+   sint32 lOTQty = 16;
+   sint32 roundingFlag = 17;
+   string partCodeX = 18;
+   string partSpecX = 19;
+   google.protobuf.StringValue measureUnit = 20;
+   google.protobuf.StringValue route = 21;
+   google.protobuf.Int32Value commodityCode = 22;
+   google.protobuf.StringValue remarks = 23;
+   sint32 orderLeadTime = 24;
+   sint32 orderCoverPeriod = 25;
+   sint32 orderIncrement = 26;
+   google.protobuf.StringValue model = 27;
+   google.protobuf.Int32Value 성형판수 = 28;
+   google.protobuf.StringValue partGroupCode = 29;
+   google.protobuf.Int32Value seqNo = 30;
+   google.protobuf.StringValue partShortName = 31;
+   google.protobuf.StringValue partClass = 32;
+   google.protobuf.StringValue 식약청품목코드 = 33;
+   oneof oneof수율 { GrpcDecimal 수율 = 34; }
+   google.protobuf.Int32Value partType2 = 35;
+   google.protobuf.StringValue barCode = 36;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string partCode = 1;
+   string partSpec = 2;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

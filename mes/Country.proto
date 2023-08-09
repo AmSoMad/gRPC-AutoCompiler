@@ -1,0 +1,72 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CountryProtos";
+
+package CountrySvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Country {
+   rpc GetForRegion (GetForRegionRequest) returns (CountrySetResponse);
+   rpc GetForRegionJson (GetForRegionRequest) returns (CountrySetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (CountryResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CountryResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CountrySetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CountrySetResponse);
+   rpc Insert (InsertRequest) returns (CountryResponse);
+   rpc InsertJson (InsertRequest) returns (CountryResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CountryResponse {
+   bytes country = 1;
+   string jsonString = 2;
+}
+message CountrySetResponse {
+   bytes countrySet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForRegionRequest {
+  string  areaCode = 1;
+}
+message GetByKeyRequest {
+   string countryCode = 1;
+}
+message InsertRequest {
+   string countryCode = 1;
+   string countryName = 2;
+   google.protobuf.StringValue areaCode = 3;
+}
+message UpdateRequest {
+   string countryCode = 1;
+   string countryName = 2;
+   google.protobuf.StringValue areaCode = 3;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string countryCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

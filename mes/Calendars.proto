@@ -1,0 +1,78 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CalendarsProtos";
+
+package CalendarsSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Calendars {
+   rpc GetForCalendarType (GetForCalendarTypeRequest) returns (CalendarsSetResponse);
+   rpc GetForCalendarTypeJson (GetForCalendarTypeRequest) returns (CalendarsSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (CalendarsResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CalendarsResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CalendarsSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CalendarsSetResponse);
+   rpc Insert (InsertRequest) returns (CalendarsResponse);
+   rpc InsertJson (InsertRequest) returns (CalendarsResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CalendarsResponse {
+   bytes calendars = 1;
+   string jsonString = 2;
+}
+message CalendarsSetResponse {
+   bytes calendarsSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForCalendarTypeRequest {
+  sint32  calendarType = 1;
+}
+message GetByKeyRequest {
+   sint32 calendarType = 1;
+   google.protobuf.Timestamp calendarDate = 2;
+}
+message InsertRequest {
+   sint32 calendarType = 1;
+   google.protobuf.Timestamp calendarDate = 2;
+   sint32 workTime = 3;
+   string workType = 4;
+   google.protobuf.StringValue remarks = 5;
+}
+message UpdateRequest {
+   sint32 calendarType = 1;
+   google.protobuf.Timestamp calendarDate = 2;
+   sint32 workTime = 3;
+   string workType = 4;
+   google.protobuf.StringValue remarks = 5;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 calendarType = 1;
+   google.protobuf.Timestamp calendarDate = 2;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

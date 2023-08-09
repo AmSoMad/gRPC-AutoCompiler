@@ -1,0 +1,65 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.BankProtos";
+
+package BankSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Bank {
+   rpc GetByKey (GetByKeyRequest) returns (BankResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (BankResponse);
+   rpc GetAll (google.protobuf.Empty) returns (BankSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (BankSetResponse);
+   rpc Insert (InsertRequest) returns (BankResponse);
+   rpc InsertJson (InsertRequest) returns (BankResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message BankResponse {
+   bytes bank = 1;
+   string jsonString = 2;
+}
+message BankSetResponse {
+   bytes bankSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   sint32 bankCode = 1;
+}
+message InsertRequest {
+   sint32 bankCode = 1;
+   string bankName = 2;
+}
+message UpdateRequest {
+   sint32 bankCode = 1;
+   string bankName = 2;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 bankCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

@@ -1,0 +1,99 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.DeptProtos";
+
+package DeptSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Dept {
+   rpc GetForExpenseAccount (GetForExpenseAccountRequest) returns (DeptSetResponse);
+   rpc GetForExpenseAccountJson (GetForExpenseAccountRequest) returns (DeptSetResponse);
+   rpc GetForBusinessClass (GetForBusinessClassRequest) returns (DeptSetResponse);
+   rpc GetForBusinessClassJson (GetForBusinessClassRequest) returns (DeptSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (DeptResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (DeptResponse);
+   rpc GetAll (google.protobuf.Empty) returns (DeptSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (DeptSetResponse);
+   rpc Insert (InsertRequest) returns (DeptResponse);
+   rpc InsertJson (InsertRequest) returns (DeptResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message DeptResponse {
+   bytes dept = 1;
+   string jsonString = 2;
+}
+message DeptSetResponse {
+   bytes deptSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForExpenseAccountRequest {
+  sint32  expenseCode = 1;
+}
+message GetForBusinessClassRequest {
+  sint32  businessClassCode = 1;
+}
+message GetByKeyRequest {
+   sint32 deptCode = 1;
+}
+message InsertRequest {
+   sint32 deptCode = 1;
+   google.protobuf.Int32Value expenseCode = 2;
+   string codeName = 3;
+   sint32 parent = 4;
+   sint32 child = 5;
+   sint32 levelNo = 6;
+   google.protobuf.Int32Value businessClassCode = 7;
+   sint32 deptLevel = 8;
+   sint32 useFlag = 9;
+   sint32 items = 10;
+   sint32 companyCode = 11;
+   sint32 budgetFlag = 12;
+   google.protobuf.StringValue linkCode = 13;
+   sint32 taxFlag = 14;
+}
+message UpdateRequest {
+   sint32 deptCode = 1;
+   google.protobuf.Int32Value expenseCode = 2;
+   string codeName = 3;
+   sint32 parent = 4;
+   sint32 child = 5;
+   sint32 levelNo = 6;
+   google.protobuf.Int32Value businessClassCode = 7;
+   sint32 deptLevel = 8;
+   sint32 useFlag = 9;
+   sint32 items = 10;
+   sint32 companyCode = 11;
+   sint32 budgetFlag = 12;
+   google.protobuf.StringValue linkCode = 13;
+   sint32 taxFlag = 14;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 deptCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

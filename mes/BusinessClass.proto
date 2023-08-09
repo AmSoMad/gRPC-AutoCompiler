@@ -1,0 +1,108 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.BusinessClassProtos";
+
+package BusinessClassSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service BusinessClass {
+   rpc GetFor업체정보 (GetFor업체정보Request) returns (BusinessClassSetResponse);
+   rpc GetFor업체정보Json (GetFor업체정보Request) returns (BusinessClassSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (BusinessClassResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (BusinessClassResponse);
+   rpc GetAll (google.protobuf.Empty) returns (BusinessClassSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (BusinessClassSetResponse);
+   rpc Insert (InsertRequest) returns (BusinessClassResponse);
+   rpc InsertJson (InsertRequest) returns (BusinessClassResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message BusinessClassResponse {
+   bytes businessClass = 1;
+   string jsonString = 2;
+}
+message BusinessClassSetResponse {
+   bytes businessClassSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetFor업체정보Request {
+  string  lCNS_NO = 1;
+}
+message GetByKeyRequest {
+   sint32 businessClassCode = 1;
+}
+message InsertRequest {
+   sint32 businessClassCode = 1;
+   google.protobuf.StringValue zipCode = 2;
+   sint32 accountUnit = 3;
+   string address = 4;
+   sint32 financePeriod = 5;
+   string companyName = 6;
+   google.protobuf.StringValue corporationNo = 7;
+   string businessCode = 8;
+   google.protobuf.StringValue president = 9;
+   string businessItem = 10;
+   string businessType = 11;
+   google.protobuf.StringValue phone = 12;
+   sint32 accountPeriod = 13;
+   sint32 settlementYear = 14;
+   sint32 settlementFlag = 15;
+   google.protobuf.Int32Value companyType = 16;
+   oneof oneofSetupDate { google.protobuf.Timestamp setupDate = 17; }
+   string taxOfficeCode = 18;
+   oneof oneofOfficialSeal { bytes officialSeal = 19; }
+   oneof oneofCompanyLogo { bytes companyLogo = 20; }
+   google.protobuf.StringValue lCNSNO = 21;
+}
+message UpdateRequest {
+   sint32 businessClassCode = 1;
+   google.protobuf.StringValue zipCode = 2;
+   sint32 accountUnit = 3;
+   string address = 4;
+   sint32 financePeriod = 5;
+   string companyName = 6;
+   google.protobuf.StringValue corporationNo = 7;
+   string businessCode = 8;
+   google.protobuf.StringValue president = 9;
+   string businessItem = 10;
+   string businessType = 11;
+   google.protobuf.StringValue phone = 12;
+   sint32 accountPeriod = 13;
+   sint32 settlementYear = 14;
+   sint32 settlementFlag = 15;
+   google.protobuf.Int32Value companyType = 16;
+   oneof oneofSetupDate { google.protobuf.Timestamp setupDate = 17; }
+   string taxOfficeCode = 18;
+   oneof oneofOfficialSeal { bytes officialSeal = 19; }
+   oneof oneofCompanyLogo { bytes companyLogo = 20; }
+   google.protobuf.StringValue lCNSNO = 21;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 businessClassCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

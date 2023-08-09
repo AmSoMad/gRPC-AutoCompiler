@@ -1,0 +1,76 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CapacitityProtos";
+
+package CapacititySvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Capacitity {
+   rpc GetForCostCenters (GetForCostCentersRequest) returns (CapacititySetResponse);
+   rpc GetForCostCentersJson (GetForCostCentersRequest) returns (CapacititySetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (CapacitityResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CapacitityResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CapacititySetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CapacititySetResponse);
+   rpc Insert (InsertRequest) returns (CapacitityResponse);
+   rpc InsertJson (InsertRequest) returns (CapacitityResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CapacitityResponse {
+   bytes capacitity = 1;
+   string jsonString = 2;
+}
+message CapacititySetResponse {
+   bytes capacititySet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForCostCentersRequest {
+  string  costCenter = 1;
+}
+message GetByKeyRequest {
+   string costCenter = 1;
+   google.protobuf.Timestamp workDate = 2;
+}
+message InsertRequest {
+   string costCenter = 1;
+   google.protobuf.Timestamp workDate = 2;
+   GrpcDecimal availableCapa = 3;
+   GrpcDecimal loadedCapa = 4;
+}
+message UpdateRequest {
+   string costCenter = 1;
+   google.protobuf.Timestamp workDate = 2;
+   GrpcDecimal availableCapa = 3;
+   GrpcDecimal loadedCapa = 4;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string costCenter = 1;
+   google.protobuf.Timestamp workDate = 2;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

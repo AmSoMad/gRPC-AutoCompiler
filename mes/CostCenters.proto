@@ -1,0 +1,170 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CostCentersProtos";
+
+package CostCentersSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service CostCenters {
+   rpc GetForCalendarType (GetForCalendarTypeRequest) returns (CostCentersSetResponse);
+   rpc GetForCalendarTypeJson (GetForCalendarTypeRequest) returns (CostCentersSetResponse);
+   rpc GetForCustomers (GetForCustomersRequest) returns (CostCentersSetResponse);
+   rpc GetForCustomersJson (GetForCustomersRequest) returns (CostCentersSetResponse);
+   rpc GetForLocation (GetForLocationRequest) returns (CostCentersSetResponse);
+   rpc GetForLocationJson (GetForLocationRequest) returns (CostCentersSetResponse);
+   rpc GetForCostCenterTypes (GetForCostCenterTypesRequest) returns (CostCentersSetResponse);
+   rpc GetForCostCenterTypesJson (GetForCostCenterTypesRequest) returns (CostCentersSetResponse);
+   rpc GetForBusinessClass_Sale (GetForBusinessClass_SaleRequest) returns (CostCentersSetResponse);
+   rpc GetForBusinessClass_SaleJson (GetForBusinessClass_SaleRequest) returns (CostCentersSetResponse);
+   rpc GetForInspectionSystems (GetForInspectionSystemsRequest) returns (CostCentersSetResponse);
+   rpc GetForInspectionSystemsJson (GetForInspectionSystemsRequest) returns (CostCentersSetResponse);
+   rpc GetForMeasureUnit (GetForMeasureUnitRequest) returns (CostCentersSetResponse);
+   rpc GetForMeasureUnitJson (GetForMeasureUnitRequest) returns (CostCentersSetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (CostCentersResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CostCentersResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CostCentersSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CostCentersSetResponse);
+   rpc Insert (InsertRequest) returns (CostCentersResponse);
+   rpc InsertJson (InsertRequest) returns (CostCentersResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CostCentersResponse {
+   bytes costCenters = 1;
+   string jsonString = 2;
+}
+message CostCentersSetResponse {
+   bytes costCentersSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForCalendarTypeRequest {
+  sint32  calendarType = 1;
+}
+message GetForCustomersRequest {
+  string  customerCode = 1;
+}
+message GetForLocationRequest {
+  sint32  locationNo = 1;
+}
+message GetForCostCenterTypesRequest {
+  string  costCenterType = 1;
+}
+message GetForBusinessClass_SaleRequest {
+  sint32  businessClassCode = 1;
+}
+message GetForInspectionSystemsRequest {
+  sint32  systemID = 1;
+}
+message GetForMeasureUnitRequest {
+  string  measureUnit = 1;
+}
+message GetByKeyRequest {
+   string costCenter = 1;
+}
+message InsertRequest {
+   string costCenter = 1;
+   sint32 calendarType = 2;
+   string costCenterName = 3;
+   sint32 machines = 4;
+   GrpcDecimal effectivePercent = 5;
+   GrpcDecimal stdLaborRate = 6;
+   GrpcDecimal curLaborRate = 7;
+   GrpcDecimal stdSetupRate = 8;
+   GrpcDecimal curSetupRate = 9;
+   GrpcDecimal stdLaborOverhead = 10;
+   GrpcDecimal curLaborOverhead = 11;
+   GrpcDecimal stdSetupOverhead = 12;
+   GrpcDecimal curSetupOverhead = 13;
+   GrpcDecimal trialLaborRate = 14;
+   GrpcDecimal trialSetupRate = 15;
+   GrpcDecimal trialLaborOverhead = 16;
+   GrpcDecimal trialSetupOverhead = 17;
+   google.protobuf.StringValue customerCode = 18;
+   google.protobuf.Int32Value opTimeCalculationMethod = 19;
+   google.protobuf.Int32Value locationNo = 20;
+   sint32 workLevel = 21;
+   google.protobuf.StringValue costCenterType = 22;
+   sint32 workType = 23;
+   GrpcDecimal addedValue = 24;
+   sint32 centerType = 25;
+   google.protobuf.StringValue machineCostCenter = 26;
+   google.protobuf.Int32Value businessClassCode = 27;
+   sint32 capaFlag = 28;
+   string centerLotChar = 29;
+   sint32 centerNumber = 30;
+   string workMSpec = 31;
+   sint32 seqNo = 32;
+   google.protobuf.Int32Value systemID = 33;
+   sint32 useFlag = 34;
+   google.protobuf.StringValue mACAddress = 35;
+   google.protobuf.Int32Value outSourcingType = 36;
+   string measureUnit = 37;
+}
+message UpdateRequest {
+   string costCenter = 1;
+   sint32 calendarType = 2;
+   string costCenterName = 3;
+   sint32 machines = 4;
+   GrpcDecimal effectivePercent = 5;
+   GrpcDecimal stdLaborRate = 6;
+   GrpcDecimal curLaborRate = 7;
+   GrpcDecimal stdSetupRate = 8;
+   GrpcDecimal curSetupRate = 9;
+   GrpcDecimal stdLaborOverhead = 10;
+   GrpcDecimal curLaborOverhead = 11;
+   GrpcDecimal stdSetupOverhead = 12;
+   GrpcDecimal curSetupOverhead = 13;
+   GrpcDecimal trialLaborRate = 14;
+   GrpcDecimal trialSetupRate = 15;
+   GrpcDecimal trialLaborOverhead = 16;
+   GrpcDecimal trialSetupOverhead = 17;
+   google.protobuf.StringValue customerCode = 18;
+   google.protobuf.Int32Value opTimeCalculationMethod = 19;
+   google.protobuf.Int32Value locationNo = 20;
+   sint32 workLevel = 21;
+   google.protobuf.StringValue costCenterType = 22;
+   sint32 workType = 23;
+   GrpcDecimal addedValue = 24;
+   sint32 centerType = 25;
+   google.protobuf.StringValue machineCostCenter = 26;
+   google.protobuf.Int32Value businessClassCode = 27;
+   sint32 capaFlag = 28;
+   string centerLotChar = 29;
+   sint32 centerNumber = 30;
+   string workMSpec = 31;
+   sint32 seqNo = 32;
+   google.protobuf.Int32Value systemID = 33;
+   sint32 useFlag = 34;
+   google.protobuf.StringValue mACAddress = 35;
+   google.protobuf.Int32Value outSourcingType = 36;
+   string measureUnit = 37;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string costCenter = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+

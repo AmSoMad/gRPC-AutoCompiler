@@ -1,0 +1,81 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.BusinessClass_SaleProtos";
+
+package BusinessClass_SaleSvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service BusinessClass_Sale {
+   rpc GetByKey (GetByKeyRequest) returns (BusinessClass_SaleResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (BusinessClass_SaleResponse);
+   rpc GetAll (google.protobuf.Empty) returns (BusinessClass_SaleSetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (BusinessClass_SaleSetResponse);
+   rpc Insert (InsertRequest) returns (BusinessClass_SaleResponse);
+   rpc InsertJson (InsertRequest) returns (BusinessClass_SaleResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message BusinessClass_SaleResponse {
+   bytes businessClass_Sale = 1;
+   string jsonString = 2;
+}
+message BusinessClass_SaleSetResponse {
+   bytes businessClass_SaleSet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetByKeyRequest {
+   sint32 businessClassCode = 1;
+}
+message InsertRequest {
+   sint32 businessClassCode = 1;
+   string address = 2;
+   string companyName = 3;
+   string businessCode = 4;
+   string president = 5;
+   string businessItem = 6;
+   string businessType = 7;
+   google.protobuf.StringValue customerCode = 8;
+   google.protobuf.Int32Value locationNo = 9;
+   google.protobuf.Int32Value productLocationNo = 10;
+}
+message UpdateRequest {
+   sint32 businessClassCode = 1;
+   string address = 2;
+   string companyName = 3;
+   string businessCode = 4;
+   string president = 5;
+   string businessItem = 6;
+   string businessType = 7;
+   google.protobuf.StringValue customerCode = 8;
+   google.protobuf.Int32Value locationNo = 9;
+   google.protobuf.Int32Value productLocationNo = 10;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   sint32 businessClassCode = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+
