@@ -80,13 +80,13 @@ message InsertRequest {
    sint32 orderCoverPeriod = 25;
    sint32 orderIncrement = 26;
    google.protobuf.StringValue model = 27;
-   google.protobuf.Int32Value 성형판수 = 28;
+   google.protobuf.Int32Value moldedPlateNumber = 28;
    google.protobuf.StringValue partGroupCode = 29;
    google.protobuf.Int32Value seqNo = 30;
    google.protobuf.StringValue partShortName = 31;
    google.protobuf.StringValue partClass = 32;
-   google.protobuf.StringValue 식약청품목코드 = 33;
-   oneof oneof수율 { GrpcDecimal 수율 = 34; }
+   google.protobuf.StringValue foodDrugAdministrationItemCode = 33;
+   oneof oneofYield { GrpcDecimal Yield = 34; }
    google.protobuf.Int32Value partType2 = 35;
    google.protobuf.StringValue barCode = 36;
 }
@@ -118,13 +118,13 @@ message UpdateRequest {
    sint32 orderCoverPeriod = 25;
    sint32 orderIncrement = 26;
    google.protobuf.StringValue model = 27;
-   google.protobuf.Int32Value 성형판수 = 28;
+   google.protobuf.Int32Value moldedPlateNumber = 28;
    google.protobuf.StringValue partGroupCode = 29;
    google.protobuf.Int32Value seqNo = 30;
    google.protobuf.StringValue partShortName = 31;
    google.protobuf.StringValue partClass = 32;
-   google.protobuf.StringValue 식약청품목코드 = 33;
-   oneof oneof수율 { GrpcDecimal 수율 = 34; }
+   google.protobuf.StringValue foodDrugAdministrationItemCode = 33;
+   oneof oneofYield{ GrpcDecimal Yield = 34; }
    google.protobuf.Int32Value partType2 = 35;
    google.protobuf.StringValue barCode = 36;
 }
