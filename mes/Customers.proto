@@ -82,7 +82,7 @@ message UpdateRequest {
    google.protobuf.StringValue email = 16;
    google.protobuf.StringValue businessCode = 17;
    sint32 unUsedFlag = 18;
-   google.protobuf.StringValue 대표Email = 19;
+   google.protobuf.StringValue representEmail = 19;
    google.protobuf.Int32Value customerType = 20;
 }
 
