@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+// 해당 파일이 속한 패키지를 지정한다.
+// 언어에 따라 다르게 생성된다.
+// java : package
+// c# : csharp_namespace
+// js : package
+// python : package
+// Dart : package
+option csharp_namespace = "InspectGrpcService";
+option java_package = "com.inspect";
+option java_multiple_files = true;
+option java_outer_classname = "InspectProto";
+
+package inspect;
+
+// 해당 파일에서 사용할 수 있는 다른 proto 파일을 import 한다.
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Inspecter {
+  rpc GetPart (PartRequest) returns (PartReply);
+  rpc UpdateInspect (InspectRequest) returns (InspectReply);
+  rpc GetInspect (InspectListRequest) returns (InspectListReply);
+}
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message PartRequest {
+  string partCodeX = 1;
+}
+
+message PartReply {
+  string partName = 1;
+  string partSpec = 2;
+}
+
+message InspectRequest {
+  string barCode = 1;
+ google.protobuf.Timestamp workDate = 2;
+  google.protobuf.Timestamp scanTime = 3;
+}
+message InspectReply {
+  string message = 1;
+}
+
+message InspectListRequest {
+  google.protobuf.Timestamp inspectDate = 1;
+}
+
+message InspectListReply {
+  string inspectJson = 1;
+}
