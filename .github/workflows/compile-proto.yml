@@ -97,7 +97,7 @@ jobs:
           #Java
           protoc --java_out="$output_dir/java_out" "$proto_file"
           #Dart
-          protoc --plugin="protoc-gen-dart=$dart_protoc_plugin_path" --dart_out="$output_dir/dart_out" "$proto_file"
+          protoc --plugin="protoc-gen-dart=$dart_protoc_plugin_path" --dart_out=grpc:"$output_dir/dart_out" "$proto_file"
           #gRPC-Web
           protoc --plugin="protoc-gen-grpc-web=$grpc_web_plugin_path" --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"$output_dir/grpc_web_out" "$proto_file"
           #Python
