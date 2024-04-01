@@ -1,0 +1,74 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "HaccpManager.CurrencyProtos";
+
+package CurrencySvc;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service Currency {
+   rpc GetForCountry (GetForCountryRequest) returns (CurrencySetResponse);
+   rpc GetForCountryJson (GetForCountryRequest) returns (CurrencySetResponse);
+   rpc GetByKey (GetByKeyRequest) returns (CurrencyResponse);
+   rpc GetByKeyJson (GetByKeyRequest) returns (CurrencyResponse);
+   rpc GetAll (google.protobuf.Empty) returns (CurrencySetResponse);
+   rpc GetAllJson (google.protobuf.Empty) returns (CurrencySetResponse);
+   rpc Insert (InsertRequest) returns (CurrencyResponse);
+   rpc InsertJson (InsertRequest) returns (CurrencyResponse);
+   rpc Update (UpdateRequest) returns (UpdateResponse);
+   rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+
+message GrpcDecimal {
+    int64 units = 1;
+    sfixed32 nanos = 2;
+}
+
+message CurrencyResponse {
+   bytes currency = 1;
+   string jsonString = 2;
+}
+message CurrencySetResponse {
+   bytes currencySet = 1;
+   string jsonString = 2;
+}
+message DataSetResponse {
+   bytes dataSet = 1;
+   string jsonString = 2;
+}
+message GetForCountryRequest {
+  string  countryCode = 1;
+}
+message GetByKeyRequest {
+   string currency = 1;
+}
+message InsertRequest {
+   string currency = 1;
+   string unitName = 2;
+   google.protobuf.StringValue countryCode = 3;
+   google.protobuf.StringValue currencyName = 4;
+}
+message UpdateRequest {
+   string currency = 1;
+   string unitName = 2;
+   google.protobuf.StringValue countryCode = 3;
+   google.protobuf.StringValue currencyName = 4;
+}
+
+message UpdateResponse {
+   int32 count = 1;
+}
+
+message DeleteRequest {
+   string currency = 1;
+}
+
+message DeleteResponse {
+   int32 count = 1;
+}
+
+
